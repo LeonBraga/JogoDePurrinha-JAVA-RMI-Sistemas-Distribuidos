@@ -5,8 +5,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface RMIInterface extends Remote {
-    public void enviarMensagem(String mensagem) throws RemoteException; //método para enviar mensagens
-    public String lerMensagem() throws RemoteException; //método para ler mensagens
+//    public void enviarMensagem(String mensagem) throws RemoteException; //mÃ©todo para enviar mensagens
+//    public String lerMensagem() throws RemoteException; //mÃ©todo para ler mensagens
     
     public String cadastraJogador(String nome) throws RemoteException;  //Cadastra nome jogador 1 e 2
 	public String getNumeroJogador(String nome) throws RemoteException;
