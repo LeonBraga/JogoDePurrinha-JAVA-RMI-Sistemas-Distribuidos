@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class RMIInterfaceImp extends UnicastRemoteObject implements RMIInterface {
-    private static String SERVIDOR = "192.168.1.6";
+    private static String SERVIDOR = "localhost";
     private final static Integer PORTA = 1099;
     private static String SERVICO = "ServicoMensagens";
     
@@ -29,14 +29,14 @@ public class RMIInterfaceImp extends UnicastRemoteObject implements RMIInterface
         super();
     }
     
-    public void enviarMensagem(String mensagem) throws RemoteException {
-        System.out.println(mensagem);
-        msgRecebida = mensagem;
-    }
-    
-    public String lerMensagem() throws RemoteException {
-        return msgRecebida;
-    }
+//    public void enviarMensagem(String mensagem) throws RemoteException {
+//        System.out.println(mensagem);
+//        msgRecebida = mensagem;
+//    }
+//    
+//    public String lerMensagem() throws RemoteException {
+//        return msgRecebida;
+//    }
     
     public String cadastraJogador(String nome) throws RemoteException {
     	
@@ -123,20 +123,27 @@ public class RMIInterfaceImp extends UnicastRemoteObject implements RMIInterface
 }
 
     public String saberResultado(String nome) { 	
-    	if (contador.equals("6")) {
+    	if (contador.equals("6")||contador.equals("7")) {
+    		if(contador.equals("6")) {
+    			contador = "7";
+    		}
+    		else if(contador.equals("7")) {
+    			contador = "0";
+    		}
+    		
     		int resultado = Integer.parseInt(jogada1) + Integer.parseInt(jogada2);
-    		if (resultado==Integer.parseInt(palpite1)) {
-    			contador = "0";
-    			return "1";
-    		}
-    		else if (resultado==Integer.parseInt(palpite2)) {
-    			contador = "0";
-    			return "2";
-    		}
-    		else {
-    			contador = "0";
-    			return "3";
-    		}
+    		int vencedor = 0;
+    		
+			if(palpite1.equals(Integer.toString(resultado))) {
+				return  "1";
+			}
+			else if (palpite2.equals(Integer.toString(resultado))) {
+				return "2";
+			}
+			else {
+				return "0";
+			}
+    		
     	}
     	else {
     		return "0";
